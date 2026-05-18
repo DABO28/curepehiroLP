@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crepe Hiro（クレープヒロ）｜米粉のモッチリやわらかクレープ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        }
+        body {
+            background-color: #fff9f5;
+            color: #4a3b32;
+            line-height: 1.6;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        :root {
+            --primary-pink: #ff6ebb;
+            --accent-purple: #9b4dca;
+            --bg-beige: #f5eae1;
+            --craft-brown: #ebdcd0;
+            --text-dark: #3a2e2b;
+        }
+        header {
+            background-color: #ffffff;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .header-logo img {
+            height: 45px;
+        }
+        .header-sns a {
+            background-color: var(--primary-pink);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .hero {
+            background: linear-gradient(135deg, #ffeef7 0%, var(--bg-beige) 100%);
+            padding: 60px 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                text-align: left;
+                justify-content: space-between;
+                padding: 80px 8%;
+            }
+        }
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+        .hero-text h1 {
+            font-size: 2rem;
+            color: var(--accent-purple);
+            line-height: 1.4;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .hero-text h1 span {
+            color: var(--primary-pink);
+            display: block;
+            font-size: 2.4rem;
+        }
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .hero-img {
+            flex: 1;
+            max-width: 450px;
+        }
+        .btn-insta {
+            display: inline-block;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #ffffff;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+        }
+        .about {
+            padding: 80px 5%;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--accent-purple);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-pink);
+        }
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+            gap: 40px;
+        }
+        @media (min-width: 768px) {
+            .about-container {
+                flex-direction: row;
+                justify-content: center;
+                max-width: 1000px;
+                margin: 40px auto 0;
+                text-align: left;
+            }
+        }
+        .about-img {
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .about-text {
+            flex: 1;
+        }
+        .mascot-box {
+            background-color: #fff0f7;
+            border: 2px dashed var(--primary-pink);
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (min-width: 480px) {
+            .mascot-box {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
+        .mascot-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        .menu-section {
+            padding: 80px 5%;
+            background-color: var(--bg-beige);
+        }
+        .category-title {
+            font-size: 1.5rem;
+            color: #5d4637;
+            margin: 40px 0 20px;
+            text-align: center;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        @media (min-width: 550px) {
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 950px) {
+            .menu-grid { grid-template-columns: repeat(3, 1fr); }
+            .menu-grid.meal { grid-template-columns: repeat(2, 1fr); max-width: 720px; }
+        }
+        .menu-card {
+            background-color: var(--craft-brown);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-card-img-wrapper {
+            width: 100%;
+            height: 320px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .menu-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .menu-card-content {
+            padding: 20px;
+            background-color: var(--craft-brown);
+            flex-grow: 1;
+        }
+        .menu-card-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding-bottom: 5px;
+        }
+
+        .sns-section {
+            padding: 80px 5%;
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .sns-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+            background-color: #fff9fc;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(255, 110, 187, 0.1);
+        }
+        .schedule-img {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            border-radius: 15px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .sns-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #5d4637;
+            font-weight: 500;
+        }
+
+        .cta {
+            background-color: var(--accent-purple);
+            color: #ffffff;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .cta h2 { font-size: 2rem; margin-bottom: 20px; }
+        .cta p { margin-bottom: 40px; }
+        footer {
+            background-color: #2b211e;
+            color: #a89a95;
+            text-align: center;
+            padding: 20px 5%;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-logo">
+            <img src="logo-text.jpg" alt="Crepe Hiro">
+        </div>
+        <div class="header-sns">
+            <a href="https://www.instagram.com/crepe_hiro?igsh=Z2M2Z2F5a241OG9x" target="_blank">Instagram</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>米粉を使った<br><span>モッチリやわらかクレープ</span></h1>
+            <p>このお店にしかない（多分）種類もたくさん！可愛いキッチンカーでお待ちしております。</p>
+            <a href="https://www.instagram.com/crepe_hiro?igsh=Z2M2Z2F5a241OG9x" target="_blank" class="btn-insta">出店スケジュールをチェック！</a>
+        </div>
+        <div class="hero-img">
+            <img src="car-illustration.jpg" alt="キッチンカー">
+        </div>
+    </section>
+
+    <section class="about">
+        <h2 class="section-title">お店のご紹介</h2>
+        <div class="about-container">
+            <img src="car-main.jpg" alt="Crepe Hiro キッチンカー" class="about-img">
+            <div class="about-text">
+                <p>ベージュの可愛いキッチンカーが目印の「Crepe Hiro」です！当店の自慢は、米粉を贅沢に使ったモッチリ＆やわらかな特製生地。定番の甘いデザート系から、ランチにもぴったりなここでしか味わえないお惣菜系まで、豊富なメニューをご用意してあなたをお待ちしています。</p>
+                
+                <div class="mascot-box">
+                    <img src="go-chan.jpg" alt="看板犬ゴーちゃん" class="mascot-img">
+                    <div class="mascot-info">
+                        <h4>🐾 公式マスコット：ゴーちゃん</h4>
+                        <p>ロゴやタペストリーで大活躍中のゴールデンレトリバーの「ゴー」です！お店には連れて来られないけれど、みんなに美味しいクレープが届くようにいつも応援しています。ゴーちゃんのイラストを目印に探してね！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section">
+        <div style="text-align: center;">
+            <h2 class="section-title">メニュー紹介</h2>
+            <p style="margin-top: 10px; color: #66554b;">※価格は店頭 of メニュー表をご確認ください</p>
+        </div>
+
+        <h3 class="category-title">🍰 Sweets Menu</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="menu-choco-banana.jpg" alt="チョコバナナ" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>1. チョコバナナ</h3>
+                    <p>王道の組み合わせ！完熟バナナに濃厚なチョコソースとたっぷりのホイップを合わせた、不動の人気メニュー。</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="menu-caramel-banana.jpg" alt="キャラメルバナナ" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>2. キャラメルバナナ</h3>
+                    <p>完熟バナナに、とろりと甘くほろ苦いキャラメルソースを絡めました。贅沢なコクが口いっぱいに広がります。</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="menu-gateau-chocolat.jpg" alt="ガトーショコラ" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>3. ガトーショコラ</h3>
+                    <p>しっとり濃厚なガトーショコラを贅沢にトッピング。チョコ好きにはたまらないご褒ベクレープです。</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="menu-custard-strawberry.jpg" alt="カスタードイチゴ" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>4. カスタードイチゴ</h3>
+                    <p>甘酸っぱいフレッシュなイチゴに、なめらかでコクのある自家製カスタードを合わせた相性抜群の美味しさ。</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="menu-brulee.jpg" alt="ブリュレクレープ" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>5. ブリュレクレープ</h3>
+                    <p>表面をバーナーで香ばしくカリッと焦がした、お洒落なデザートクレープ。とろける食感がクセになります。</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="menu-apple.jpg" alt="アップルコンポート" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>6. アップルコンポート</h3>
+                    <p>じっくり甘く煮込んだ自家製アップルコンポート。シャキッとした食感で自然の甘みを楽しめます。</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="category-title">🍔 Meal Menu</h3>
+        <div class="menu-grid meal">
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="menu-napolitan.jpg" alt="ナポリタン" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>7. ナポリタン</h3>
+                    <p>懐かしい味わいのナポリタンを包んだお食事系クレープ。もっちりした生地とケチャップソースが意外なベストマッチ！</p>
+                </div>
+            </div>
+            <div class="menu-card">
+                <div class="menu-card-img-wrapper">
+                    <img src="tuna.jpg" alt="ツナマヨ" class="menu-card-img">
+                </div>
+                <div class="menu-card-content">
+                    <h3>8. ツナマヨ</h3>
+                    <p>旨味たっぷりのツナマヨと新鮮なシャキシャキのレタスを包みました。軽食やランチに大満足の一品です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sns-section">
+        <h2 class="section-title">出店スケジュール</h2>
+        <div class="sns-container">
+            <img src="insta-schedule.jpg" alt="出店イメージ画像" class="schedule-img">
+            <p class="sns-text">今月の出店カレンダー、詳しい場所や営業時間は、<br>公式Instagramにてリアルタイムで更新中！<br>最新のスケジュールは下のボタンからご確認ください✨</p>
+            <a href="https://www.instagram.com/crepe_hiro?igsh=Z2M2Z2F5a241OG9x" target="_blank" class="btn-insta">最新の出店情報をInstagramで見る</a>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>イベント出店のご依頼はこちら</h2>
+        <p>Crepe Hiroでは、お祭り、各種イベント、企業様の集まりなどへの出店依頼を大歓迎で受け付けております。出店のご相談は、公式InstagramのDMよりお気軽にお問い合わせください！</p>
+        <a href="https://www.instagram.com/crepe_hiro?igsh=Z2M2Z2F5a241OG9x" target="_blank" class="btn-insta">✉ 公式InstagramのDMを開く</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Crepe Hiro. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
